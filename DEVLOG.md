@@ -17,7 +17,7 @@ I aim to use the data to find patterns in my mathematical ability, to then feed 
 |`date`|DATE|To track improvement over time|
 |`session_id`|STRING|To see development over a session, and fatigue|
 |`operator`|STRING| To understand what operation I struggle with|
-|`number_1`,`number_2`|INT| To see if theres specific numbers that cause issues|
+|`number_1`,`number_2`|FLOAT| To see if theres specific numbers that cause issues|
 |`correct_answer`|FLOAT|Used with `my_answer` to measure accuracy and error type|
 |`my_answer`|FLOAT|Above|
 |`is_correct`|BOOL|Accuracy Measure|
