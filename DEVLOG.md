@@ -74,7 +74,12 @@ Then using these initial sets embedded in my website, I will answer questions an
 
 **Development Stage** After initial development of the number sets, I quickly realised this is a feature I will have to continuously tinker in the beginning, so would involve lots of edits and etracting data from the website to python to analyse. So I have decided to change the order of the project. I will build the program in Python first to allow me to easily modify and test my ranges. Once this is finalised, I can then base the website off my local python project. This is exactly why the planning process is key to a successful project, detecting issues before they arise.
 
+## Entry 3 Number Ranges
 
+### Claude usage
+After researching and experimenting with number ranges, I settled on a starting point I was happy with, storing in an Excel spreadsheet with one table per operation. I then asked Claude to translate these into a Python dictionary stored in a seperate file, meaning I can adjust ranges without touching the main quiz code. 
+
+Division would require special care since you can't divide two numbers and hope to get a whole number as an answer. I was aware of this constraint and planned to deal with it later, but Claude identified this difficulty and structured division around a result range and divisor range. After reviewing this approach I decided to keep this format as it would ensure only valid division questions are generated.
 
 
 
