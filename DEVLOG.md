@@ -81,7 +81,35 @@ After researching and experimenting with number ranges, I settled on a starting 
 
 Division would require special care since you can't divide two numbers and hope to get a whole number as an answer. I was aware of this constraint and planned to deal with it later, but Claude identified this difficulty and structured division around a result range and divisor range. After reviewing this approach I decided to keep this format as it would ensure only valid division questions are generated.
 
+## Entry 4 Quiz Logic Spec
+*12th March 2026**
 
+**Session Structure:** Each session, I have a minute to answer as many questions as I can correctly. When I answer a question, my input is stored and a new question is generated. This process continues until the timer runs out at whioch point the user is shown their score out of total attempted questions.
+
+**Data Storage:** Data will be stored into two seperate CSV files, one that is question specific and another that is a session overview. The files will share `session_id` so can be combined later.
+
+We have discussed the format of the question csv file previously, but for the session csv we will extract the following: 
+| Field | Type |
+|---|---|
+|`date`|DATE|
+|`session_id`|STRING|
+|`level`|INT|
+|`total_questions`|FLOAT|
+|`correct`|INT|
+|`score_percent`|FLOAT|
+|`operator_focus`|STRING|
+
+`session_id` will be a generated from a timestamp at the start of each session, formatted as `YYYY-MM-DD-HHMMSS`
+
+## Considerations
+
+The last question presented just before the timer runs out doesn't provide us with useful data, as I will not be able to give an answer, so this doesn't need to be included when collecting the data.
+
+## Question Generator
+
+With this spec finalised, I asked Claud to write a `generate_question` function taking two inputs: a level integer and an operator string, returning a dictionary containing question and answer.
+
+Claude produced a working first version, but testing revealed two issues. Firstly, division questions were occasionally producing decimal numbers within the question itself which was caused by odd numbers being paired with .5 values. I fixed this with a constraint so only even numbers are paired with .5s. Secondly, level 5 decimal questions were multiplying two decimal numbers together, which I hadn't intended. I corrected this simply so that only one of the numbers could be decimal.
 
 
 
