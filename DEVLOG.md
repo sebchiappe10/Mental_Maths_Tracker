@@ -1,4 +1,4 @@
-## Entry 1 Project Planning
+## Entry 1 Project Outline
 *11th March 2026*
 
 Before writing any code, it is important I lay out exactly what I am trying to achieve, how I aim to achieve it and any thoughts I have on the direction I can take this. Also it is important to address I will be using Claude to help me build this project, so I will also be including how and where I have used AI as a tool.
@@ -58,6 +58,25 @@ Are there specific numbers I struggle with?
 **Deciding difficulty of a question:** Determing what makes a question a medium level compared to hard can be challenging. Perhaps research and test results found online can provide me on insight on how to determine the difficulty brackets. 
 
 **Data Bias:** I am the only data provider, so deciding if I need to improve a skill or whether those questions are too hard for a level is challenging. Lets say on the medium level, I keep scoring badly on division questions, is this due to a weakness in that area, or do I need to reconfigure the questions. 
+
+## Entry 2 Project Planning
+*12th March 2026*
+
+Now I have laid out what I want to achieve, I have to plan how I am going to get there. I finished last entry with some initial considerations and issues I have to iron out. Here are my first plans to do so:
+
+**Operation difficulty:** Not all operations are equal in difficulty. Adding two numbers is mostly easier than multiplying them, so a level system that ignores this won't reflect the users ability, rather the difference in operation. To account for this, each operation will have its own number ranges per level, chosen so that each question is similar in difficulty, regardless of the operator.
+
+**Deciding these sets** Deciding exactly which numbers belong at each level is not straightforward, combined with the fact I will be the only user to provide data. If I consistently struggle with level 3 multiplication, does this tell us I need to improve my multiplication or are the questions simply too hard for that level.
+
+To solve this I will take a 2 stage approach. First, I will define an initial set of numbers for each operation and level, with the help of three sources: patterns I find on other mental maths websites, my own intuition, and siggestions from Claude since an AI model will be drawing from a much larger data set then I could create. 
+
+Then using these initial sets embedded in my website, I will answer questions and begin creating data to explore. Once I have enough, I will analyse it in Python to look for any strong patterns, whether its accuracy or answer time, and from my findings can adjust levels appropriately. After this calibration stage I will finalise the sets and from that point treat the data as a reliable record of performance to explore.
+
+**Development Stage** After initial development of the number sets, I quickly realised this is a feature I will have to continuously tinker in the beginning, so would involve lots of edits and etracting data from the website to python to analyse. So I have decided to change the order of the project. I will build the program in Python first to allow me to easily modify and test my ranges. Once this is finalised, I can then base the website off my local python project. This is exactly why the planning process is key to a successful project, detecting issues before they arise.
+
+
+
+
 
 
 
