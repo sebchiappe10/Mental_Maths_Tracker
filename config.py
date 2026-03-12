@@ -41,7 +41,7 @@ LEVEL_CONFIG = {
         2: {"min_result": 2,  "max_result": 13, "min_divisor": 2,  "max_divisor": 10, "allow_half": False},
         3: {"min_result": 3,  "max_result": 15, "min_divisor": 3,  "max_divisor": 15, "allow_half": False},
         4: {"min_result": 4,  "max_result": 18, "min_divisor": 4,  "max_divisor": 18, "allow_half": False},
-        5: {"min_result": 4,  "max_result": 18, "min_divisor": 4,  "max_divisor": 18, "allow_half": True},
+        5: {"min_result": 6,  "max_result": 18, "min_divisor": 6,  "max_divisor": 19, "allow_half": True},
     },
 
     "percentage": {
