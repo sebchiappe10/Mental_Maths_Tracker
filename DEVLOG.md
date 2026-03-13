@@ -101,15 +101,42 @@ We have discussed the format of the question csv file previously, but for the se
 
 `session_id` will be a generated from a timestamp at the start of each session, formatted as `YYYY-MM-DD-HHMMSS`
 
-## Considerations
+### Considerations
 
 The last question presented just before the timer runs out doesn't provide us with useful data, as I will not be able to give an answer, so this doesn't need to be included when collecting the data.
 
-## Question Generator
+### Question Generator
 
 With this spec finalised, I asked Claud to write a `generate_question` function taking two inputs: a level integer and an operator string, returning a dictionary containing question and answer.
 
 Claude produced a working first version, but testing revealed two issues. Firstly, division questions were occasionally producing decimal numbers within the question itself which was caused by odd numbers being paired with .5 values. I fixed this with a constraint so only even numbers are paired with .5s. Secondly, level 5 decimal questions were multiplying two decimal numbers together, which I hadn't intended. I corrected this simply so that only one of the numbers could be decimal.
+
+### CSV Writers
+Before I create the quiz loop, I need a function that will record my answers and append them to a CSV file for analysis.
+
+I need two functions, a write_question(row) which appends a single question's data to questions.csv, and write_session(summary) which appends a session summary to sessions.csv. Both take a dictionary as input containing the data points I am interested in and have specified.
+
+These functions need an additional attribute, if these functions are being called without the CSV file existing, then they will create this file themselves. This decision means the code can be shared to different users without having to create their own files.
+
+Using this spec as a prompt, combined with the explicit data points, Claud built these functions. The code was simple and also recommend I add the CSV files to .gitignore so that they are generated data rather than project code. The os.path.isfile() handles the case when the files don't exist and created them with the correct headers automattically. In the case when a question is generated just before the timer runs out, I want to exclude this from the CSV file but can handle this in the quiz loop rather than complicating the CSV writers.
+
+## Entry 4 
+
+*March 13th 2026*
+
+### Quiz loop
+
+With all the individual functions coded, I am now going to create the quiz that ties everything together and can then begin generating data. The process will operate in the following order:
+
+**Initiation** The user is asked what level they want to play, then a session ID is generated and a 3 second timer starts before the questions begin.
+
+**During the Quiz** A 120 second timer will begin, and the user must answer as many questions as they can correctlty in that time. A new question is generated each time the last one has been answered, the user will not be told which ones they have answered correctly until the end. I want to ensure each operation is randomly chosen but with the condition that no two consecutive questions can use the same operator. The quiz will format the questions 12 = 7 = ? and only numeric inputs are accepted. Also before the users answer is corrected, the answer and their answer is rounded to 2.dp to avoid float comparison issues. Each answered question is written immediately to questions.csv. If the timer expires mid-answer, that question is discarded and the session ends.
+
+**End** Once the timer runs out, the session data is stored into the csv file and the user is showed their score as well as a list of questions they answered incorrectly with my answer and the correct answer. They are then given the option to play again, which generates a new session ID and restarts, or exit.
+
+
+
+
 
 
 
