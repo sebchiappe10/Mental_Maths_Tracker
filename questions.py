@@ -135,8 +135,7 @@ def generate_question(operator: str, level: int) -> dict:
         "correct_answer": answer,
     }
 
-answer = generate_question("subtraction", 5)
-print(answer)
+
 
 
 
