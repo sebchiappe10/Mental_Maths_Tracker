@@ -24,12 +24,12 @@ LEVEL_CONFIG = {
 
     "multiplication": {
         1: {"min1": 1,  "max1": 10, "min2": 1,  "max2": 10},
-        2: {"min1": 1,  "max1": 10, "min2": 10, "max2": 20},
-        3: {"min1": 1,  "max1": 15, "min2": 10, "max2": 25},
+        2: {"min1": 2,  "max1": 10, "min2": 10, "max2": 20},
+        3: {"min1": 2,  "max1": 15, "min2": 10, "max2": 25},
         4: {"min1": 5,  "max1": 25, "min2": 15, "max2": 30},
         5: {
             "whole":   {"min1": 10,  "max1": 25,  "min2": 15, "max2": 45},
-            "decimal": {"min1": 8.0, "max1": 20.0, "min2": 1,  "max2": 10}
+            "decimal": {"min1": 8.00, "max1": 20.00, "min2": 1.01,  "max2": 10}
         },
     },
 
@@ -54,16 +54,16 @@ LEVEL_CONFIG = {
             "min2": 10, "max2": 100, "multiples_of": 10
         },
         3: {
-            "percentages": [10, 20, 25, 50],
+            "percentages": [10, 20, 25, 40],
             "min2": 10, "max2": 100, "multiples_of": 2
         },
         4: {
-            "percentages": list(range(2, 100, 2)) + [25],
+            "percentages": list(range(5, 100, 5)),
             "min2": 10, "max2": 150, "multiples_of": 2
         },
         5: {
-            "percentages": list(range(1, 101)),
-            "min2": 10, "max2": 150, "multiples_of": 1
+            "percentages": list(range(2, 100, 2)),
+            "min2": 10, "max2": 150, "multiples_of": 2
         },
     },
 

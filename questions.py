@@ -3,17 +3,6 @@ from config import LEVEL_CONFIG
 
 
 def generate_question(operator: str, level: int) -> dict:
-    """
-    Generate a mental maths question for the given operator and level.
-
-    Args:
-        operator: One of "addition", "subtraction", "multiplication",
-                  "division", "percentage"
-        level:    Integer level (1-5) corresponding to a key in LEVEL_CONFIG
-
-    Returns:
-        A dictionary with keys: operator, number_1, number_2, correct_answer
-    """
 
     # -------------------------------------------------------------------------
     # Look up the config block for this operator and level
@@ -21,7 +10,7 @@ def generate_question(operator: str, level: int) -> dict:
     cfg = LEVEL_CONFIG[operator][level]
 
     # -------------------------------------------------------------------------
-    # ADDITION / SUBTRACTION / MULTIPLICATION
+    # ADDITION / SUBTRACTION 
     # Level 5 has two sub-modes ("whole" and "decimal"); pick one at random.
     # All other levels use the config block directly.
     # -------------------------------------------------------------------------
@@ -39,9 +28,16 @@ def generate_question(operator: str, level: int) -> dict:
             # Generate two floats rounded to 2 decimal places
             n1 = round(random.uniform(cfg["min1"], cfg["max1"]), 2)
             n2 = round(random.uniform(cfg["min2"], cfg["max2"]), 2)
+
         else:
+            # neither can be a multiple of 10, so regenerate if one is 10
             n1 = random.randint(cfg["min1"], cfg["max1"])
             n2 = random.randint(cfg["min2"], cfg["max2"])
+            
+            if level > 2:
+                while n1 % 10 == 0 or n2 % 10 == 0:
+                    n1 = random.randint(cfg["min1"], cfg["max1"])
+                    n2 = random.randint(cfg["min2"], cfg["max2"])
 
         # Calculate the correct answer for each operator
         if operator == "addition":
@@ -52,8 +48,6 @@ def generate_question(operator: str, level: int) -> dict:
             # positive and sensible for a mental maths context
             n1, n2 = max(n1, n2), min(n1, n2)
             answer = round(n1 - n2, 2)
-
-
 
 
     elif operator == "multiplication":
@@ -67,9 +61,18 @@ def generate_question(operator: str, level: int) -> dict:
         if is_decimal:
             n1 = round(random.uniform(cfg["min1"], cfg["max1"]), 1)
             n2 = random.randint(cfg["min2"], cfg["max2"])
+           
+            while n2 == 10:
+                n2 = random.randint(cfg["min2"], cfg["max2"])
+
         else:
             n1 = random.randint(cfg["min1"], cfg["max1"])
             n2 = random.randint(cfg["min2"], cfg["max2"])
+
+            if level > 2:
+                while n1 == 10 or n2 == 10:
+                    n1 = random.randint(cfg["min1"], cfg["max1"])
+                    n2 = random.randint(cfg["min2"], cfg["max2"])
 
         answer = round(n1 * n2, 2)
     # -------------------------------------------------------------------------
@@ -82,7 +85,12 @@ def generate_question(operator: str, level: int) -> dict:
  
         divisor = random.randint(cfg["min_divisor"], cfg["max_divisor"])
         result  = random.randint(cfg["min_result"],  cfg["max_result"])
- 
+
+        if level > 2:
+            while result == 10 or divisor == 10:
+                result = random.randint(cfg["min_result"], cfg["max_result"])
+                divisor = random.randint(cfg["min_divisor"], cfg["max_divisor"])
+
         if cfg["allow_half"]:
             # At level 5, the result can optionally end in .5
             # Randomly add 0.5 to the result 50% of the time
