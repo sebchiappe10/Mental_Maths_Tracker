@@ -130,9 +130,37 @@ With all the individual functions coded, I am now going to create the quiz that 
 
 **Initiation** The user is asked what level they want to play, then a session ID is generated and a 3 second timer starts before the questions begin.
 
-**During the Quiz** A 120 second timer will begin, and the user must answer as many questions as they can correctly in that time. A new question is generated each time the last one has been answered, the user will not be told which ones they have answered correctly until the end. I want to ensure each operation is randomly chosen but with the condition that no two consecutive questions can use the same operator. The quiz will format the questions 12 = 7 = ? and only numeric inputs are accepted. Also before the users answer is corrected, the answer and their answer is rounded to 2.dp to avoid float comparison issues. Each answered question is written immediately to questions.csv. If the timer expires mid-answer, that question is discarded and the session ends.
+**During the Quiz** A 120 second timer will begin, and the user must answer as many questions as they can correctly in that time. A new question is generated each time the last one has been answered, and a correct or incorrect statement will be shown with each answer submitted. I want to ensure each operation is randomly chosen but with the condition that no two consecutive questions can use the same operator. The quiz will format the questions 12 = 7 = ? and only numeric inputs are accepted. Also before the users answer is corrected, the answer and their answer is rounded to 2.dp to avoid float comparison issues. Each answered question is written immediately to questions.csv. If the timer expires mid-answer, that question is discarded and the session ends.
 
 **End** Once the timer runs out, the session data is stored into the csv file and the user is showed their score as well as a list of questions they answered incorrectly with my answer and the correct answer. They are then given the option to play again, which generates a new session ID and restarts, or exit.
+
+### Quiz Alpha
+**Results of First Quiz**
+
+Happy with the output from Claude of the quiz loop overall. The main body of the program works as intended and the edge case of not including the final unanswered question was handled correctly.
+
+
+**Things to note:** The way operator type is stored in sessions.csv is clunky as it currently stores a comma-separated list of all operators used rather than a clean single value. This will need revisiting before analysis.
+
+Question difficulty is inconsistent within levels. For example at level 2, questions like 1 × 18 are being generated which feel too easy for that level. The number ranges need tightening slightly which I will do for obvious cases I have come across so far.
+ 
+ **Clear Observations:** 
+Multiples of 10 should be removed from level 3 onwards for all four arithmetic operations as they feel too easy relative to other questions at that level.
+
+50% should be removed as a percentage option from level 3 onwards for the same reason.
+
+Level 4 percentage questions feel too difficult, examples include 38% of 146, switching to multiples of 5 as the base number should balance them.
+
+**Next Step**
+Make these config adjustments before beginning any formal data collection and analysis, so the dataset reflects a properly calibrated difficulty curve from the start.
+ 
+
+
+
+
+
+
+
 
 
 
