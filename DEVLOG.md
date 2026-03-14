@@ -153,6 +153,46 @@ Level 4 percentage questions feel too difficult, examples include 38% of 146, sw
 
 **Next Step**
 Make these config adjustments before beginning any formal data collection and analysis, so the dataset reflects a properly calibrated difficulty curve from the start.
+
+ ## Entry 4
+
+*March 13th 2026*
+
+I have made the initial appropriate changes to the levels so that the above concerns are addressed. From initial testing there are already significantly fewer questions that feel out of place.
+
+**Dilemma:** At this stage I have a decision I need to make about the project. Do I assume these level configurations are sound and analyse my abilities based on my performance at each level, or do I use the data to perfect the level system so that each operation is as difficult as the other.
+
+**Limitations:** After already practicing my mental maths ability from building this project, I have noticed they have improved significantly but this has not been trackable since I was still in the development stage. If I keep altering the levels, at what point will I be able to track my progress. By the time I am satisfied with the level system I may have already made most of the significant development in my abilities and won't have the data to show for it.
+
+**Decision:** I started this project because I wanted to get better at mental maths, so tracking this development will be a priority. I will now begin setting up a jupyter notebook that charts my progress, so I need to work out what I can compare and why.
+
+## Entry 5
+*March 13th 2026*
+
+### Data Analysis
+
+Before creating the notebook I want to define the initial data points I want to explore. Good analysis requires both high level overviews and detailed insights.
+
+**Overview**
+
+*Level Difficulty*: To be begin with I want to simply compare the data I have on each level, how does my response time and accuracy vary accross each level? This won't track development but simply shows how the difficulty varies.
+
+*Development comparisons*: To measure general development I will need to break down data into each level, so that I can see how I improved on that particular difficulty. Measurements I will be tracking will be number of questions answered, average response time and answer accuracy.
+
+**Micro Analysis:** 
+
+Diving deeper, I will track how performance changes over time based on operator, looking both at accuracy and response time. This will show which operator I am weakest at and which operator I have improved at most since beginning. Again this will need to be seperated by level for accurate insights. 
+
+
+
+
+
+
+
+
+
+
+
  
 
 
