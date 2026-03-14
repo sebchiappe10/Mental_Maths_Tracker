@@ -183,6 +183,28 @@ Before creating the notebook I want to define the initial data points I want to 
 
 Diving deeper, I will track how performance changes over time based on operator, looking both at accuracy and response time. This will show which operator I am weakest at and which operator I have improved at most since beginning. Again this will need to be seperated by level for accurate insights. 
 
+## Entry 6
+
+### Data analysis notebook
+
+With the analysis plan finalised, I asked Claude to build the Jupyter Notebook, explicity describing the graphs I wanted and what axis they will have. Despite the clear prompt, the nature of graphing meant Claude needed significant guidance and correction throughout. Issues included graph formatting, icnorrect data filtering, and axis scaling problems that needed repeated fixes.
+
+A seprate issue occured whilst creating the graphs, which was missing data points. At first I analysed the graph code to see where we were losing the data but couldn't spot any problems. After submitting more quiz results and checking how the graphs changed I noticed again they had been lost, and checked the summary CSV files to find the recent data hadn't been appended correctly. After extensive debugging I could not identify the root cause, however the question csv files were still updating correctly, and I realised all the information stored in summary could be extracted from the question data. I took this approach instead, which actually felt like the more elegant solution since I am aggregating the data myself rather than relying on pre-summarised figures.
+
+The notebook now produces a working measure of progress across the three graph types defined in the plan.
+
+### Future Analysis
+
+Once the data set becomes richer, I plan on exploring the following topics:
+
+**Error Analysis:** How does the average speed of a wrong answer compare to a right answer? Am I fast but wrong, or is it the harder questions that I make errors on? Do I make more errors at the start of a session before warming up? Do I fatigue in a session? When I get a question wrong how far off do I tend to be?
+
+**Number Analysis** Are their particular numbers I consistently struggle with? Are their particular number combinations I struggle with?
+
+
+## Planned Changes to the Quiz
+
+One issue I noticed during testing was when a hard question came up towards the end of the quiz. This sometimes meant I spent the last 20 seconds on this question qithout getting to an answer, and then with how the data collection is formatted this question would be discarded. Perhaps its better to allow the user to answer all questions they are presented in the 2 minutes, so I can submit an answer to my last question 10 seconds after the clock has gone.
 
 
 
