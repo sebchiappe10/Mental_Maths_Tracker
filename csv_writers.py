@@ -7,11 +7,7 @@ QUESTIONS_HEADERS = [
     "correct_answer", "my_answer", "is_correct", "response_time_ms", "difficulty_level"
 ]
 
-SESSIONS_FILE = "sessions.csv"
-SESSIONS_HEADERS = [
-    "session_id", "date", "level", "total_questions",
-    "correct", "score_percent", "operator_focus"
-]
+
 
 
 def write_question(row: dict) -> None:
@@ -24,11 +20,3 @@ def write_question(row: dict) -> None:
         writer.writerow(row)
 
 
-def write_session(summary: dict) -> None:
-    """Append one session summary row to sessions.csv."""
-    file_exists = os.path.isfile(SESSIONS_FILE)
-    with open(SESSIONS_FILE, "a", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=SESSIONS_HEADERS)
-        if not file_exists:
-            writer.writeheader()
-        writer.writerow(summary)

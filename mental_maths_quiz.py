@@ -10,7 +10,7 @@ from rich.panel import Panel
 from rich.table import Table
 
 
-from csv_writers import write_question, write_session
+from csv_writers import write_question
 from questions import generate_question
 
 def generate_session_id():
@@ -176,21 +176,11 @@ def run_session(level: int) -> None:
         correct = sum(1 for r in questions_log if r["is_correct"])
         pct     = round((correct / total * 100), 1) if total > 0 else 0.0
 
-        # Operator breakdown for the summary (comma-separated unique operators used)
-        operators_used = list(dict.fromkeys(r["operator"] for r in questions_log))
-        operator_focus = ", ".join(operators_used) if operators_used else "none"
+   
 
-        summary = {
-            "session_id":       session_id,
-            "date":             session_date,
-            "level":            level,
-            "total_questions":  total,
-            "correct":          correct,
-            "score_percent":    pct,
-            "operator_focus":   operator_focus,
-        }
 
-        write_session(summary)
+
+
 
         # ── Score panel ───────────────────────────────────────────────────── #
         console.print()
